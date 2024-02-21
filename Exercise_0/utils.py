@@ -36,7 +36,10 @@ def load_graph(filename: str) -> nx.Graph:
         The loaded NetworkX graph
     """
     # Code here
-    return None
+
+    graphs = nx.read_graphml(filename)
+
+    return graphs
 
 
 def draw_graph(graph: nx.Graph,
@@ -58,4 +61,7 @@ def draw_graph(graph: nx.Graph,
 
     """
     # Code here
+
+    
+
     pass

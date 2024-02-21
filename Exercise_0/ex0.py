@@ -1,7 +1,7 @@
 #######################
 #
-# Name: 
-# Matriculation Number:
+# Name: Chenrui Fan
+# Matriculation Number: 23-125-818
 #
 # Name:
 # Matriculation Number:
@@ -31,6 +31,9 @@ def part1() -> List[nx.Graph]:
         The list of loaded graphs
     """
     # Code here
+
+    
+
     return None
 
 
