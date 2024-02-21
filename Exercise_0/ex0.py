@@ -8,7 +8,8 @@
 #
 #######################
 
-
+import os
+import csv
 from typing import List
 
 import networkx as nx
@@ -32,9 +33,20 @@ def part1() -> List[nx.Graph]:
     """
     # Code here
 
-    
+    graph_files = os.listdir('./graphs')
+    graphs = []
 
-    return None
+    for graph_file in graph_files:
+        graph_path = os.path.join('./graphs', graph_file)
+        print("graph: ", graph_path)
+        graph = load_graph(graph_path)
+        graphs.append(graph)
+
+        drawing_filename = os.path.join('./drawings', f'{graph_file[:-8]}.png')
+
+        draw_graph(graph, drawing_filename)
+
+    return graphs
 
 
 #################
@@ -54,6 +66,17 @@ def naive_graph_isomorphism(graph1: nx.Graph, graph2: nx.Graph) -> bool:
         Returns True if the input graphs are isomorphic, else False.
     """
     # Code here
+
+    if graph1.number_of_nodes() != graph2.number_of_nodes():
+        return False
+    if graph1.number_of_edges() != graph2.number_of_edges():
+        return False
+    
+    labels1 = [graph1.nodes[node]['x'] for node in graph1.nodes()]
+    labels2 = [graph2.nodes[node]['x'] for node in graph2.nodes()]
+    
+    if sorted(labels1) == sorted(labels2):
+        return True
     return False
 
 
@@ -71,6 +94,23 @@ def part2(graphs: List[nx.Graph]) -> None:
 
     """
     # Code here
+
+    num = len(graphs)
+    isomorphism_matrix = [[0] * num for _ in range(num)]
+
+    for i in range(num):
+        for j in range(num):
+            if i < j:
+                if naive_graph_isomorphism(graphs[i], graphs[j]):
+                    isomorphism_matrix[i][j] = 1
+                    isomorphism_matrix[j][i] = 1
+
+    # Write the matrix to a CSV file
+    with open('./results/naive_isomorphic_test.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        for row in isomorphism_matrix:
+            writer.writerow(row)
+
     pass
 
 

@@ -62,6 +62,31 @@ def draw_graph(graph: nx.Graph,
     """
     # Code here
 
+    # Reference: https://networkx.org/documentation/stable/tutorial.html
+
+    if layout is None:
+        layout = nx.kamada_kawai_layout
+    positions = layout(graph)
     
+    # node = [(node_id, {attribute_key: attribute_value, ...}), ...]
+    # node[0] is the node identifier and node[1] is the dictionary of attributes.
+    # both key is float so we use node's value to get color in COLOR_MAP
+    node_colors = [COLOR_MAP[node[1]['x']] for node in graph.nodes(data=True)]
+    # use node identifier and value to generate a new dictionary
+    labels = {node[0]: str(node[1]['x']) for node in graph.nodes(data=True)}
+
+    # Draw the nodes
+    # Set opacity level to 0.8 like the demo
+    nx.draw_networkx_nodes(graph, positions, node_color=node_colors, alpha=0.8)
+
+    # Draw the edges
+    nx.draw_networkx_edges(graph, positions, alpha=1)
+
+    # Draw the labels with white font
+    nx.draw_networkx_labels(graph, positions, labels=labels, font_color='white', font_size=8)
+
+    plt.axis('off')
+    plt.savefig(filename)
+    plt.close()
 
     pass
