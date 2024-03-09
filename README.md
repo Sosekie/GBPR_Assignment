@@ -6,15 +6,20 @@ Prepare for windows:
 
 1. Open microsoft store, search for python, and download python 3.9
 
-2. Use:
+2. For first time, reinstall env:
+
+python3.9 -m venv myenv
+pip install -r requirements.txt
+
+3. Use:
 
 myenv\Scripts\activate 
 
 to activate env, this is different from using Linux or MacOS
 
-3. Use VsCode or PyCharm, open GBPR_Assignment
+4. Use VsCode or PyCharm, open GBPR_Assignment
 
-4. Open cmd or powershell, cd Exercise x, Run "python ex0.py". Use:
+5. Open cmd or powershell, cd Exercise x, Run "python ex0.py". Use:
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
