@@ -6,9 +6,9 @@ Prepare for windows:
 
 1. Open microsoft store, search for python, and download python 3.9
 
-2. For first time, reinstall env:
+2. For first time, install env:
 
-python3.9 -m venv myenv
+python -m venv myenv
 
 pip install -r requirements.txt
 
