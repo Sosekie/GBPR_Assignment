@@ -9,6 +9,7 @@ Prepare for windows:
 2. For first time, reinstall env:
 
 python3.9 -m venv myenv
+
 pip install -r requirements.txt
 
 3. Use:
